@@ -63,4 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('isAuthenticated')) {
         window.location.href = 'dashboard.html';
     }
+});// Google Auth Functionality
+document.querySelectorAll('.google-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // In a real app, you would implement Google OAuth here
+        // This is just a simulation for the UI
+        console.log('Google authentication initiated');
+        
+        // Simulate successful Google auth
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('userName', 'Google User');
+        window.location.href = 'dashboard.html';
+    });
 });

@@ -1,20 +1,22 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+    background: radial-gradient(ellipse at top, #44A08D, #093637);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    color: #fff;
 }
 
 .auth-container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 400px;
     max-width: 90%;
     padding: 2rem;
+    color: #333; /* Reset text color for the container */
 }
 
 .auth-tabs {
@@ -34,7 +36,7 @@ body {
 }
 
 .tab-btn.active {
-    color: #4285f4;
+    color: #44A08D;
     font-weight: bold;
 }
 
@@ -45,7 +47,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #4285f4;
+    background-color: #44A08D;
 }
 
 .auth-form {
@@ -84,15 +86,61 @@ body {
 .auth-btn {
     width: 100%;
     padding: 0.75rem;
-    background-color: #4285f4;
+    background-color: #44A08D;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
     margin-top: 1rem;
+    transition: background-color 0.3s ease;
 }
 
 .auth-btn:hover {
-    background-color: #3367d6;
+    background-color: #368574;
+}
+
+.dashboard-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 0 auto;
+    color: #333;
+}
+
+.dashboard-container h1 {
+    color: #093637;
+}
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: white;
+    color: #444;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.google-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.google-btn img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* Adjust spacing for the new button */
+.auth-btn {
+    margin-top: 0; 
 }
