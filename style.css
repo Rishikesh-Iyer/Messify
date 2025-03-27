@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    background-image: url("Images/mess.jpg");
+    color: #333;
+}
+
+/* Navigation Bar */
+header {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('https://images.unsplash.com/photo-1546549034-1121ea3dc66a') center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Feedback Section */
+.feedback-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.feedback-box {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.feedback-box ul {
+    list-style-type: none;
+}
+
+.feedback-box li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* About and Contact Section */
+.about-section, .contact-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #eee;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
