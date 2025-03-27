@@ -113,8 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('Form submitted:', formData);
             alert('Thank you for your feedback!');
-            
-            // In a real app, you would send this data to a server
         });
 
         // Logout functionality
