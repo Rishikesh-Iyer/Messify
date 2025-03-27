@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Feedback Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>Mess Feedback Form</h1>
+        
+        <form id="feedback-form">
+            <!-- Student Information -->
+            <fieldset>
+                <legend>Student Information</legend>
+                <div class="form-group">
+                    <label for="reg-number">Register Number*</label>
+                    <input type="text" id="reg-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-name">Name*</label>
+                    <input type="text" id="student-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="block-room">Block Letter and Room Number*</label>
+                    <input type="text" id="block-room" required placeholder="Example: A-101">
+                </div>
+            </fieldset>
+
+            <!-- Mess Information -->
+            <fieldset>
+                <legend>Mess Information</legend>
+                <div class="form-group">
+                    <label for="mess-name">Name of Mess*</label>
+                    <select id="mess-name" required>
+                        <option value="">Select Mess</option>
+                        <option value="North Mess">Darling Mess</option>
+                        <option value="South Mess">SRCC Mess</option>
+                        <option value="East Mess">Buddies and Bites Mess</option>
+                        <option value="West Mess">Proodle Mess</option>
+                        <option value="Central Mess">Zenith Mess</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Type of Mess*</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="mess-type" value="Veg" required> Veg</label>
+                        <label><input type="radio" name="mess-type" value="Non-Veg"> Non-Veg</label>
+                        <label><input type="radio" name="mess-type" value="Special"> Special</label>
+                        <label><input type="radio" name="mess-type" value="Night"> Night Mess</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Feedback Category -->
+            <!-- Feedback Category -->
+<fieldset>
+    <legend>Feedback Ratings</legend>
+    <div class="form-group">
+        <label>Please rate the following aspects (1-5 stars)*</label>
+        
+        <div class="rating-group">
+            <div class="rating-item">
+                <label>Food Quality</label>
+                <div class="star-rating">
+                    <input type="radio" id="quality-5" name="quality" value="5" required>
+                    <label for="quality-5" class="star">★</label>
+                    <input type="radio" id="quality-4" name="quality" value="4">
+                    <label for="quality-4" class="star">★</label>
+                    <input type="radio" id="quality-3" name="quality" value="3">
+                    <label for="quality-3" class="star">★</label>
+                    <input type="radio" id="quality-2" name="quality" value="2">
+                    <label for="quality-2" class="star">★</label>
+                    <input type="radio" id="quality-1" name="quality" value="1">
+                    <label for="quality-1" class="star">★</label>
+                </div>
+            </div>
+            
+            <div class="rating-item">
+                <label>Food Quantity</label>
+                <div class="star-rating">
+                    <input type="radio" id="quantity-5" name="quantity" value="5" required>
+                    <label for="quantity-5" class="star">★</label>
+                    <input type="radio" id="quantity-4" name="quantity" value="4">
+                    <label for="quantity-4" class="star">★</label>
+                    <input type="radio" id="quantity-3" name="quantity" value="3">
+                    <label for="quantity-3" class="star">★</label>
+                    <input type="radio" id="quantity-2" name="quantity" value="2">
+                    <label for="quantity-2" class="star">★</label>
+                    <input type="radio" id="quantity-1" name="quantity" value="1">
+                    <label for="quantity-1" class="star">★</label>
+                </div>
+            </div>
+            
+            <div class="rating-item">
+                <label>Hygiene</label>
+                <div class="star-rating">
+                    <input type="radio" id="hygiene-5" name="hygiene" value="5" required>
+                    <label for="hygiene-5" class="star">★</label>
+                    <input type="radio" id="hygiene-4" name="hygiene" value="4">
+                    <label for="hygiene-4" class="star">★</label>
+                    <input type="radio" id="hygiene-3" name="hygiene" value="3">
+                    <label for="hygiene-3" class="star">★</label>
+                    <input type="radio" id="hygiene-2" name="hygiene" value="2">
+                    <label for="hygiene-2" class="star">★</label>
+                    <input type="radio" id="hygiene-1" name="hygiene" value="1">
+                    <label for="hygiene-1" class="star">★</label>
+                </div>
+            </div>
+            
+            <div class="rating-item">
+                <label>Mess Timing</label>
+                <div class="star-rating">
+                    <input type="radio" id="timing-5" name="timing" value="5" required>
+                    <label for="timing-5" class="star">★</label>
+                    <input type="radio" id="timing-4" name="timing" value="4">
+                    <label for="timing-4" class="star">★</label>
+                    <input type="radio" id="timing-3" name="timing" value="3">
+                    <label for="timing-3" class="star">★</label>
+                    <input type="radio" id="timing-2" name="timing" value="2">
+                    <label for="timing-2" class="star">★</label>
+                    <input type="radio" id="timing-1" name="timing" value="1">
+                    <label for="timing-1" class="star">★</label>
+                </div>
+            </div>
+            
+            <div class="rating-item">
+                <label>Overall Satisfaction</label>
+                <div class="star-rating">
+                    <input type="radio" id="overall-5" name="overall" value="5" required>
+                    <label for="overall-5" class="star">★</label>
+                    <input type="radio" id="overall-4" name="overall" value="4">
+                    <label for="overall-4" class="star">★</label>
+                    <input type="radio" id="overall-3" name="overall" value="3">
+                    <label for="overall-3" class="star">★</label>
+                    <input type="radio" id="overall-2" name="overall" value="2">
+                    <label for="overall-2" class="star">★</label>
+                    <input type="radio" id="overall-1" name="overall" value="1">
+                    <label for="overall-1" class="star">★</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+            <!-- Suggestions/Improvements -->
+            <fieldset>
+                <legend>Suggestions/Improvements</legend>
+                <div class="form-group">
+                    <label for="suggestions">Select from list</label>
+                    <select id="suggestions">
+                        <option value="">-- Select an option --</option>
+                        <option value="Improve food quality">Improve food quality</option>
+                        <option value="Increase food quantity">Increase food quantity</option>
+                        <option value="Better hygiene practices">Better hygiene practices</option>
+                        <option value="Adjust mess timings">Adjust mess timings</option>
+                        <option value="More variety in menu">More variety in menu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Additional Comments</label>
+                    <textarea id="comments" rows="4"></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Proof Attachment -->
+            <fieldset>
+                <legend>Proof Attachment</legend>
+                <div class="form-group">
+                    <label for="proof">Upload Proof (if any)</label>
+                    <input type="file" id="proof" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                    <small>Allowed formats: PDF, DOC, JPG (Max 5MB)</small>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="auth-btn">Submit Feedback</button>
+                <button type="button" id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
