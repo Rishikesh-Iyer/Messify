@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
     const isAuthPage = document.getElementById('login-form') !== null;
     const isFeedbackPage = document.getElementById('feedback-form') !== null;
 
-   
+    // Auth Page Functionality
     if (isAuthPage) {
-        
+        // Tab switching
         const loginTab = document.getElementById('login-tab');
         const signupTab = document.getElementById('signup-tab');
         const loginForm = document.getElementById('login-form');
@@ -25,120 +24,149 @@ document.addEventListener('DOMContentLoaded', function() {
             loginForm.classList.remove('active');
         });
         
-        
-        loginForm.addEventListener('submit', function(e) {
+        // Login Form Submission
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             
-            if (email && password) {
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('userEmail', email);
-                window.location.href = 'feedback.html';
-            } else {
-                alert('Please fill in all fields');
+            try {
+                const response = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = 'feedback.html';
+                } else {
+                    alert(data.error || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed. Please try again.');
             }
         });
         
-        signupForm.addEventListener('submit', function(e) {
+        // Signup Form Submission
+        signupForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('signup-name').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             
-            if (!name || !email || !password || !confirmPassword) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
             if (password !== confirmPassword) {
                 alert('Passwords do not match');
                 return;
             }
             
-            localStorage.setItem('isAuthenticated', 'true');
-            localStorage.setItem('userName', name);
-            localStorage.setItem('userEmail', email);
-            window.location.href = 'feedback.html';
+            try {
+                const response = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = 'feedback.html';
+                } else {
+                    alert(data.error || 'Registration failed');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Registration failed. Please try again.');
+            }
         });
         
-        
+        // Google Auth (mock)
         document.querySelectorAll('.google-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('userName', 'Google User');
-                localStorage.setItem('userEmail', 'googleuser@example.com');
-                window.location.href = 'feedback.html';
+                alert('Implementation is unfinished.');
             });
         });
-        
-        // Check if user is already authenticated
-        if (localStorage.getItem('isAuthenticated')) {
-            window.location.href = 'feedback.html';
-        }
     }
 
     // Feedback Page Functionality
     if (isFeedbackPage) {
         // Check authentication
-        if (!localStorage.getItem('isAuthenticated')) {
+        const token = localStorage.getItem('authToken');
+        const user = JSON.parse(localStorage.getItem('user') || {});
+        
+        if (!token) {
             window.location.href = 'index.html';
             return;
         }
 
         // Set student name if available
-        const userName = localStorage.getItem('userName');
-        if (userName) {
-            document.getElementById('student-name').value = userName;
+        if (user.name) {
+            document.getElementById('student-name').value = user.name;
         }
 
         // Form submission
-        document.getElementById('feedback-form').addEventListener('submit', function(e) {
+        document.getElementById('feedback-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Collect all form data
-            const formData = {
-                regNumber: document.getElementById('reg-number').value,
-                name: document.getElementById('student-name').value,
-                blockRoom: document.getElementById('block-room').value,
-                messName: document.getElementById('mess-name').value,
-                messType: document.querySelector('input[name="mess-type"]:checked').value,
-                categories: Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value),
-                suggestion: document.getElementById('suggestions').value,
-                comments: document.getElementById('comments').value,
-                proof: document.getElementById('proof').files[0]?.name || 'None'
-            };
+            // Collect form data
+            const formData = new FormData();
+            formData.append('regNumber', document.getElementById('reg-number').value);
+            formData.append('studentName', document.getElementById('student-name').value);
+            formData.append('blockRoom', document.getElementById('block-room').value);
+            formData.append('messName', document.getElementById('mess-name').value);
+            formData.append('messType', document.querySelector('input[name="mess-type"]:checked').value);
+            formData.append('qualityRating', document.querySelector('input[name="quality"]:checked').value);
+            formData.append('quantityRating', document.querySelector('input[name="quantity"]:checked').value);
+            formData.append('hygieneRating', document.querySelector('input[name="hygiene"]:checked').value);
+            formData.append('timingRating', document.querySelector('input[name="timing"]:checked').value);
+            formData.append('overallRating', document.querySelector('input[name="overall"]:checked').value);
+            formData.append('suggestion', document.getElementById('suggestions').value);
+            formData.append('comments', document.getElementById('comments').value);
             
-            console.log('Form submitted:', formData);
-            alert('Thank you for your feedback!');
+            const proofFile = document.getElementById('proof').files[0];
+            if (proofFile) {
+                formData.append('proof', proofFile);
+            }
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('Thank you for your feedback!');
+                    document.getElementById('feedback-form').reset();
+                } else {
+                    alert(data.error || 'Failed to submit feedback');
+                }
+            } catch (error) {
+                console.error('Feedback submission error:', error);
+                alert('Failed to submit feedback. Please try again.');
+            }
         });
 
         // Logout functionality
         document.getElementById('logout-btn').addEventListener('click', function() {
-            localStorage.removeItem('isAuthenticated');
-            localStorage.removeItem('userName');
-            localStorage.removeItem('userEmail');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
             window.location.href = 'index.html';
-        });
-        document.getElementById('feedback-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect all form data including ratings
-            const formData = {
-                // ... other form data ...
-                ratings: {
-                    quality: document.querySelector('input[name="quality"]:checked')?.value,
-                    quantity: document.querySelector('input[name="quantity"]:checked')?.value,
-                    hygiene: document.querySelector('input[name="hygiene"]:checked')?.value,
-                    timing: document.querySelector('input[name="timing"]:checked')?.value,
-                    overall: document.querySelector('input[name="overall"]:checked')?.value
-                }
-            };
-            
-            console.log('Form submitted with ratings:', formData);
-            alert('Thank you for your feedback and ratings!');
         });
     }
 });
