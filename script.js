@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Google Auth (mock)
         document.querySelectorAll('.google-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                alert('Google authentication would be implemented here in a real app');
+                alert('Implementation is unfinished.');
             });
         });
     }
